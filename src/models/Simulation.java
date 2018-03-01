@@ -19,8 +19,15 @@ public class Simulation {
     }
 
     public void run() {
+
+        // init starting rides
+        for (int i=0; i<city.vehicles.size(); i++) {
+            city.vehicles.get(i).setRide(rides.get(i));
+        }
+
         for (int i = 0; i < steps; i++) {
             for (Vehicle vehicle : city.vehicles) {
+
                 vehicle.step(i);
             }
         }
@@ -47,13 +54,14 @@ public class Simulation {
 
     private static int nextAvailableRide = 0;
 
-    public synchronized static Ride getNextRide() {
-        Ride ret = rides.get(nextAvailableRide);
+    public synchronized static int getNextRidePos() {
 
         nextAvailableRide++;
 
-        return ret;
+        return nextAvailableRide;
     }
 
-
+    public synchronized static Ride getRide(int pos) {
+        return rides.get(0);
+    }
 }
