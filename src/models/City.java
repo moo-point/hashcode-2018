@@ -16,27 +16,12 @@ public class City {
         }
     }
 
-
     public ArrayList<Vehicle> vehicles;
-    public static ArrayList<Ride> rides;
-
 
     public Size size;
 
-    private static int nextAvailableRide = 0;
-
-    public City (Size site, ArrayList<Vehicle> vehicles, List<Ride> rides) {
+    public City (Size site, ArrayList<Vehicle> vehicles) {
         this.size = site;
         this.vehicles = vehicles;
-
-        rides = Collections.synchronizedList(rides);
-    }
-
-    public Ride getNextRide() {
-        Ride ret = rides.get(nextAvailableRide);
-
-        nextAvailableRide++;
-
-        return ret;
     }
 }

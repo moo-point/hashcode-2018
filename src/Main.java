@@ -1,8 +1,5 @@
 
-import models.City;
-import models.Position;
-import models.Ride;
-import models.Vehicle;
+import models.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -33,6 +30,8 @@ public class Main {
                 steps = Integer.valueOf(line.split(" ")[5]);
             }
             System.out.println("City has " + rows + " rows and " + columns + " columns" +vehicles+ " vehicles" +rides+ " rides" +bonus+ " bonus" +steps+ " steps");
+
+
             City.Size size = new City.Size(rows,columns);
             ArrayList<Vehicle> vehiclesArrayList = Vehicle.factory(vehicles);
             ArrayList<Ride> ridesArrayList = new ArrayList<>();
@@ -46,8 +45,11 @@ public class Main {
                 counter ++;
             }
 
-            City city = new City(size,vehiclesArrayList,ridesArrayList);
-            System.out.println(city);
+            City city = new City(size,vehiclesArrayList);
+            Simulation simulation = new Simulation(city, bonus, steps);
+
+            simulation.run();
+
         }catch (Exception e){
             System.out.println(e);
         }

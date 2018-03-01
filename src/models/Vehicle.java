@@ -15,11 +15,10 @@ public class Vehicle {
     }
 
     private void pickRide(int time) {
-
-
+        currentRide = Simulation.getNextRide();
     }
 
-    private void step(int time) {
+    public void step(int time) {
         if (currentPosition.row == currentRide.end.row && currentPosition.col == currentRide.end.col) {
             currentRide = null;
             pickRide(time);
