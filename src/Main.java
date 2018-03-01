@@ -1,13 +1,15 @@
 
 import models.*;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public class Main {
+
+    private static Simulation simulation;
+
+    private static String filename = "c_no_hurry";
 
     public static void main(String[] args) {
         int rows=0;
@@ -18,7 +20,7 @@ public class Main {
         int steps=0;
 
         try{
-            BufferedReader br = new BufferedReader(new FileReader("problem_statement/b_should_be_easy.in"));
+            BufferedReader br = new BufferedReader(new FileReader("problem_statement/" + filename + ".in"));
             String line;
             int counter = 0;
             if ((line = br.readLine()) != null) {
@@ -51,12 +53,32 @@ public class Main {
             }
 
             City city = new City(size,vehiclesArrayList);
-            Simulation simulation = new Simulation(city, ridesArrayList, bonus, steps);
+            simulation = new Simulation(city, ridesArrayList, bonus, steps);
 
             simulation.run();
+
+            exportData();
 
         }catch (Exception e){
             System.out.println(e);
         }
+    }
+
+    private static void exportData() {
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter(filename + ".out", "UTF-8");
+            for (Vehicle vehicle : simulation.city.vehicles) {
+                String toExport = vehicle.rides.size() + " ";
+                for (int ride : vehicle.rides) {
+                    toExport = toExport + " " + ride;
+                }
+                writer.println(toExport);
+            }
+            writer.close();
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
+            System.out.println("Error occurred in Simulation. Error stacktrace: " + e.getStackTrace());
+        }
+
     }
 }

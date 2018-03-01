@@ -33,26 +33,9 @@ public class Simulation {
                 vehicle.step(i);
             }
         }
-        exportData();
     }
 
-    private void exportData() {
-        PrintWriter writer = null;
-        try {
-            writer = new PrintWriter("output.out", "UTF-8");
-            for (Vehicle vehicle : this.city.vehicles) {
-                String toExport = vehicle.rides.size() + " ";
-                for (int ride : vehicle.rides) {
-                    toExport = toExport + " " + ride;
-                }
-                writer.println(toExport);
-            }
-            writer.close();
-        } catch (FileNotFoundException | UnsupportedEncodingException e) {
-            System.out.println("Error occurred in Simulation. Error stacktrace: " + e.getStackTrace());
-        }
 
-    }
 
     private static int nextAvailableRide = 0;
 
@@ -64,6 +47,6 @@ public class Simulation {
     }
 
     public synchronized static Ride getRide(int pos) {
-        return rides.get(0);
+        return rides.get(pos);
     }
 }
