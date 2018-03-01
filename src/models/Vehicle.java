@@ -8,7 +8,7 @@ public class Vehicle {
 
     public Position currentPosition = new Position(0, 0);
     public Ride currentRide;
-    public Ride nextRide;
+    public int nextRide;
 
     public Vehicle() {
     }
@@ -17,18 +17,27 @@ public class Vehicle {
         this.currentRide = ride;
     }
 
-    private void pickRide(int time) {
-        currentRide =
+    private void pickNextRide(int time) {
+        if(currentRide.free) {
+            currentRide = Simulation.getRide(rides.get(rides.size() - 1));
+        } else {
 
-        nextRide = Simulation.getNextRide();
+            int nextRidePos = Simulation.getNextRidePos();
 
+            rides.add(nextRidePos);
 
+            Ride nextRide = Simulation.getRide(nextRidePos);
+
+            currentRide = new Ride(currentPosition, nextRide.start, time, 100000);
+
+            currentRide.free = true;
+        }
     }
 
     public void step(int time) {
         if (currentPosition.row == currentRide.end.row && currentPosition.col == currentRide.end.col) {
             currentRide = null;
-            pickRide(time);
+            pickNextRide(time);
         }
 
         if (currentPosition.row == currentRide.end.row) {
