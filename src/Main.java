@@ -37,17 +37,17 @@ public class Main {
             ArrayList<Ride> ridesArrayList = new ArrayList<>();
             while ((line = br.readLine()) != null){
                 int rideFromRow = line.charAt(0);
-                int rideFromColumn = line.charAt(0);
-                int rideToColumn = line.charAt(0);
-                int rideToRow = line.charAt(0);
-//                if (rideFromRow >=0 && rideFromColumn >=0 && rideToColumn >=0 && rideToRow >=0 &&
-//                        rideFromColumn < columns && rideToColumn < columns &&
-//                        rideFromRow < rows && rideToRow < rows) {
-                    Position start = new Position(line.charAt(0), line.charAt(1));
-                    Position end = new Position(line.charAt(2), line.charAt(3));
+                int rideFromColumn = line.charAt(1);
+                int rideToRow = line.charAt(2);
+                int rideToColumn = line.charAt(3);
+                if (rideFromRow >=0 && rideFromColumn >=0 && rideToColumn >=0 && rideToRow >=0 &&
+                        rideFromColumn < columns && rideToColumn < columns &&
+                        rideFromRow < rows && rideToRow < rows) {
+                    Position start = new Position(rideFromRow, rideFromColumn);
+                    Position end = new Position(rideToRow, rideToColumn);
                     Ride ride = new Ride(start, end, line.charAt(4), line.charAt(5));
                     ridesArrayList.add(ride);
-//                }
+                }
             }
 
             City city = new City(size,vehiclesArrayList);
