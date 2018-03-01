@@ -1,5 +1,6 @@
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.stream.Stream;
 
@@ -13,7 +14,7 @@ public class Main {
 
         System.out.println("Hello World!");
         try{
-            BufferedReader br = new BufferedReader(new FileReader("C:/Users/mvasalos/Documents/My Projects/HashCode2018/inputFiles/big.in"));
+            BufferedReader br = new BufferedReader(new FileReader("inputFiles/big.in"));
             String line;
             int counter = 0;
             if ((line = br.readLine()) != null) {
