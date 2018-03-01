@@ -4,8 +4,11 @@ import java.util.ArrayList;
 
 public class Vehicle {
 
+    public ArrayList<Integer> rides = new ArrayList<>();
+
     public Position currentPosition = new Position(0, 0);
     public Ride currentRide;
+    public Ride nextRide;
 
     public Vehicle() {
     }
@@ -15,7 +18,11 @@ public class Vehicle {
     }
 
     private void pickRide(int time) {
-        currentRide = Simulation.getNextRide();
+        currentRide =
+
+        nextRide = Simulation.getNextRide();
+
+
     }
 
     public void step(int time) {
