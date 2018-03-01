@@ -7,39 +7,47 @@ public class Vehicle {
     public Position currentPosition = new Position(0, 0);
     public Ride currentRide;
 
-    public Vehicle() {}
+    public Vehicle() {
+    }
 
     public void setRide(Ride ride) {
         this.currentRide = ride;
     }
 
     private void pickRide(int time) {
-        
 
 
     }
 
     private void step(int time) {
-        if(currentPosition.row == currentRide.end.row && currentPosition.col == currentRide.end.col) {
+        if (currentPosition.row == currentRide.end.row && currentPosition.col == currentRide.end.col) {
             currentRide = null;
             pickRide(time);
         }
 
-        if(currentPosition.row == currentRide.end.row) {
-            currentPosition.col++;
+        if (currentPosition.row == currentRide.end.row) {
+            if (currentPosition.col < currentRide.end.col) {
+                currentPosition.col++;
+            } else {
+                currentPosition.col--;
+            }
         } else {
-            currentPosition.row ++;
+            if (currentPosition.col < currentRide.end.col) {
+                currentPosition.row++;
+            } else {
+                currentPosition.row--;
+            }
         }
     }
 
     public int costToRide(Ride ride) {
-        return  ride.cost() + Math.abs(ride.start.col - currentPosition.col) + Math.abs(ride.start.row - currentPosition.row);
+        return ride.cost() + Math.abs(ride.start.col - currentPosition.col) + Math.abs(ride.start.row - currentPosition.row);
     }
 
-    public static ArrayList<Vehicle> factory (int instances) {
+    public static ArrayList<Vehicle> factory(int instances) {
 
         ArrayList<Vehicle> vehicles = new ArrayList<>();
-        for (int i=0; i<instances; i++) {
+        for (int i = 0; i < instances; i++) {
             vehicles.add(new Vehicle());
         }
 
