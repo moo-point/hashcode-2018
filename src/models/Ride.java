@@ -6,6 +6,10 @@ public class Ride {
     public int startEarliest;
     public int finishLatest;
 
+    public boolean occupied;
+
+    public boolean free;
+
     public int cost() {
         return Math.abs(start.col - end.col) + Math.abs(start.row - end.row);
     }

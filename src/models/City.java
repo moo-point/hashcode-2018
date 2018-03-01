@@ -1,6 +1,8 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class City {
 
@@ -14,14 +16,27 @@ public class City {
         }
     }
 
+
     public ArrayList<Vehicle> vehicles;
-    public ArrayList<Ride> rides;
+    public static ArrayList<Ride> rides;
+
 
     public Size size;
 
-    public City (Size site, ArrayList<Vehicle> vehicles, ArrayList<Ride> rides) {
+    private static int nextAvailableRide = 0;
+
+    public City (Size site, ArrayList<Vehicle> vehicles, List<Ride> rides) {
         this.size = site;
         this.vehicles = vehicles;
-        this.rides = rides;
+
+        rides = Collections.synchronizedList(rides);
+    }
+
+    public Ride getNextRide() {
+        Ride ret = rides.get(nextAvailableRide);
+
+        nextAvailableRide++;
+
+        return ret;
     }
 }

@@ -13,12 +13,23 @@ public class Vehicle {
         this.currentRide = ride;
     }
 
-    public void step(int time) {
+    private void pickRide(int time) {
+        
+
 
     }
 
-    private void move() {
+    private void step(int time) {
+        if(currentPosition.row == currentRide.end.row && currentPosition.col == currentRide.end.col) {
+            currentRide = null;
+            pickRide(time);
+        }
 
+        if(currentPosition.row == currentRide.end.row) {
+            currentPosition.col++;
+        } else {
+            currentPosition.row ++;
+        }
     }
 
     public int costToRide(Ride ride) {
