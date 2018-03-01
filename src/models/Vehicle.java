@@ -13,8 +13,10 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public void setRide(Ride ride) {
+    public void setRide(Ride ride, int ridePos) {
         this.currentRide = ride;
+
+        rides.add(ridePos);
     }
 
     private void pickNextRide(int time) {

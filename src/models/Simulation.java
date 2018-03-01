@@ -12,17 +12,19 @@ public class Simulation {
     public int bonus;
     public int steps;
 
-    public Simulation(City city, int bonus, int steps) {
+    public Simulation(City city, ArrayList<Ride> theRides, int bonus, int steps) {
         this.city = city;
         this.bonus = bonus;
         this.steps = steps;
+
+        rides = theRides;
     }
 
     public void run() {
 
         // init starting rides
         for (int i=0; i<city.vehicles.size(); i++) {
-            city.vehicles.get(i).setRide(rides.get(i));
+            city.vehicles.get(i).setRide(rides.get(i), i);
         }
 
         for (int i = 0; i < steps; i++) {

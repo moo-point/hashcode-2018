@@ -18,7 +18,7 @@ public class Main {
         int steps=0;
 
         try{
-            BufferedReader br = new BufferedReader(new FileReader("problem_statement/a_example.in"));
+            BufferedReader br = new BufferedReader(new FileReader("problem_statement/b_should_be_easy.in"));
             String line;
             int counter = 0;
             if ((line = br.readLine()) != null) {
@@ -40,18 +40,18 @@ public class Main {
                 int rideFromColumn = line.charAt(0);
                 int rideToColumn = line.charAt(0);
                 int rideToRow = line.charAt(0);
-                if (rideFromRow >=0 && rideFromColumn >=0 && rideToColumn >=0 && rideToRow >=0 &&
-                        rideFromColumn < columns && rideToColumn < columns &&
-                        rideFromRow < rows && rideToRow < rows) {
+//                if (rideFromRow >=0 && rideFromColumn >=0 && rideToColumn >=0 && rideToRow >=0 &&
+//                        rideFromColumn < columns && rideToColumn < columns &&
+//                        rideFromRow < rows && rideToRow < rows) {
                     Position start = new Position(line.charAt(0), line.charAt(1));
                     Position end = new Position(line.charAt(2), line.charAt(3));
                     Ride ride = new Ride(start, end, line.charAt(4), line.charAt(5));
                     ridesArrayList.add(ride);
-                }
+//                }
             }
 
             City city = new City(size,vehiclesArrayList);
-            Simulation simulation = new Simulation(city, bonus, steps);
+            Simulation simulation = new Simulation(city, ridesArrayList, bonus, steps);
 
             simulation.run();
 
