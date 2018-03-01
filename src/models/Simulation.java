@@ -40,7 +40,7 @@ public class Simulation {
             }
             writer.close();
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
-            e.printStackTrace();
+            System.out.println("Error occurred in Simulation. Error stacktrace: " + e.getStackTrace());
         }
 
     }
