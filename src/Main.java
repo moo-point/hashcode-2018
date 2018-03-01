@@ -9,7 +9,7 @@ public class Main {
 
     private static Simulation simulation;
 
-    private static String filename = "c_no_hurry";
+    private static String filename = "e_high_bonus";
 
     public static void main(String[] args) {
         int rows=0;

@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Simulation {
     public static ArrayList<Ride> rides;
@@ -24,7 +25,8 @@ public class Simulation {
 
         // init starting rides
         for (int i=0; i<city.vehicles.size(); i++) {
-            city.vehicles.get(i).setRide(rides.get(i), i);
+            int pos = nextAvailableRide.getAndIncrement();
+            city.vehicles.get(i).setRide(rides.get(pos), pos);
         }
 
         for (int i = 0; i < steps; i++) {
@@ -37,13 +39,11 @@ public class Simulation {
 
 
 
-    private static int nextAvailableRide = 0;
+    private static AtomicInteger nextAvailableRide = new AtomicInteger();
 
     public synchronized static int getNextRidePos() {
 
-        nextAvailableRide++;
-
-        return nextAvailableRide;
+        return nextAvailableRide.getAndIncrement();
     }
 
     public synchronized static Ride getRide(int pos) {

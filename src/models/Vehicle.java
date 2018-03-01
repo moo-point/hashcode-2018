@@ -8,7 +8,6 @@ public class Vehicle {
 
     public Position currentPosition = new Position(0, 0);
     public Ride currentRide;
-    public int nextRide;
 
     public Vehicle() {
     }
@@ -23,7 +22,6 @@ public class Vehicle {
         if(currentRide.free) {
             currentRide = Simulation.getRide(rides.get(rides.size() - 1));
         } else {
-
             int nextRidePos = Simulation.getNextRidePos();
 
             rides.add(nextRidePos);
