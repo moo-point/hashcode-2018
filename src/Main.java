@@ -1,7 +1,13 @@
 
+import models.City;
+import models.Position;
+import models.Ride;
+import models.Vehicle;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public class Main {
@@ -27,7 +33,21 @@ public class Main {
                 steps = Integer.valueOf(line.split(" ")[5]);
             }
             System.out.println("City has " + rows + " rows and " + columns + " columns" +vehicles+ " vehicles" +rides+ " rides" +bonus+ " bonus" +steps+ " steps");
+            City.Size size = new City.Size(rows,columns);
+            ArrayList<Vehicle> vehiclesArrayList = Vehicle.factory(vehicles);
+            ArrayList<Ride> ridesArrayList = new ArrayList<>();
+            while ((line = br.readLine()) != null){
+                Position start = new Position(line.charAt(0),line.charAt(1));
+                Position end = new Position(line.charAt(2),line.charAt(3));
+                Ride ride = new Ride(start,end,line.charAt(4),line.charAt(5));
+                if (counter != 0){
+                    ridesArrayList.add(ride);
+                }
+                counter ++;
+            }
 
+            City city = new City(size,vehiclesArrayList,ridesArrayList);
+            System.out.println(city);
         }catch (Exception e){
             System.out.println(e);
         }

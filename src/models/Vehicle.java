@@ -22,7 +22,7 @@ public class Vehicle {
     }
 
     public int costToRide(Ride ride) {
-        return  ride.cost() + Math.abs(ride.start.col - currentPosition.col) + Math.abs(ride.start.row - currentPosition.row)
+        return  ride.cost() + Math.abs(ride.start.col - currentPosition.col) + Math.abs(ride.start.row - currentPosition.row);
     }
 
     public static ArrayList<Vehicle> factory (int instances) {
