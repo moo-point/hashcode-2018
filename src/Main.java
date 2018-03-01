@@ -9,43 +9,25 @@ public class Main {
     public static void main(String[] args) {
         int rows=0;
         int columns=0 ;
-        int minNumOfIngredients=0;
-        int maxNumOfCellsPerSlice=0;
+        int vehicles=0;
+        int rides=0;
+        int bonus=0;
+        int steps=0;
 
-        System.out.println("Hello World!");
         try{
-            BufferedReader br = new BufferedReader(new FileReader("inputFiles/big.in"));
+            BufferedReader br = new BufferedReader(new FileReader("problem_statement/a_example.in"));
             String line;
             int counter = 0;
             if ((line = br.readLine()) != null) {
-                if (counter == 0) {
-                    rows = Integer.valueOf(line.split(" ")[0]);
-                    columns = Integer.valueOf(line.split(" ")[1]);
-                    minNumOfIngredients = Integer.valueOf(line.split(" ")[2]);
-                    maxNumOfCellsPerSlice = Integer.valueOf(line.split(" ")[3]);
-                }
-                counter ++;
+                rows = Integer.valueOf(line.split(" ")[0]);
+                columns = Integer.valueOf(line.split(" ")[1]);
+                vehicles = Integer.valueOf(line.split(" ")[2]);
+                rides = Integer.valueOf(line.split(" ")[3]);
+                bonus = Integer.valueOf(line.split(" ")[4]);
+                steps = Integer.valueOf(line.split(" ")[5]);
             }
-            System.out.println("Pizza has " + rows + " rows and " + columns + " columns");
-            System.out.println("Min number of ingredients is " + minNumOfIngredients + " and max number of cells per slice is " + maxNumOfCellsPerSlice);
+            System.out.println("City has " + rows + " rows and " + columns + " columns" +vehicles+ " vehicles" +rides+ " rides" +bonus+ " bonus" +steps+ " steps");
 
-            Character[][] pizza = new Character[rows][columns];
-
-
-
-            for (int i=0; i<rows; i++){
-                if ((line = br.readLine()) != null) {
-                    int lineLength = line.length();
-                    for (int j=0; j<columns; j++){
-                        lineLength --;
-                        if (lineLength >= 0) {
-                            pizza[i][j] = line.charAt(lineLength);
-                        }
-                        System.out.print(pizza[i][j]);
-                    }
-                    System.out.println("");
-                }
-            }
         }catch (Exception e){
             System.out.println(e);
         }
