@@ -36,13 +36,18 @@ public class Main {
             ArrayList<Vehicle> vehiclesArrayList = Vehicle.factory(vehicles);
             ArrayList<Ride> ridesArrayList = new ArrayList<>();
             while ((line = br.readLine()) != null){
-                Position start = new Position(line.charAt(0),line.charAt(1));
-                Position end = new Position(line.charAt(2),line.charAt(3));
-                Ride ride = new Ride(start,end,line.charAt(4),line.charAt(5));
-                if (counter != 0){
+                int rideFromRow = line.charAt(0);
+                int rideFromColumn = line.charAt(0);
+                int rideToColumn = line.charAt(0);
+                int rideToRow = line.charAt(0);
+                if (rideFromRow >=0 && rideFromColumn >=0 && rideToColumn >=0 && rideToRow >=0 &&
+                        rideFromColumn < columns && rideToColumn < columns &&
+                        rideFromRow < rows && rideToRow < rows) {
+                    Position start = new Position(line.charAt(0), line.charAt(1));
+                    Position end = new Position(line.charAt(2), line.charAt(3));
+                    Ride ride = new Ride(start, end, line.charAt(4), line.charAt(5));
                     ridesArrayList.add(ride);
                 }
-                counter ++;
             }
 
             City city = new City(size,vehiclesArrayList);
