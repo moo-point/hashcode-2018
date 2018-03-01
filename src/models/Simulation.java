@@ -32,9 +32,9 @@ public class Simulation {
         try {
             writer = new PrintWriter("output.out", "UTF-8");
             for (Vehicle vehicle : this.city.vehicles) {
-                String toExport = vehicle.rides.size() + "";
+                String toExport = vehicle.rides.size() + " ";
                 for (int ride : vehicle.rides) {
-                    toExport = toExport+ ride;
+                    toExport = toExport + " " + ride;
                 }
                 writer.println(toExport);
             }
