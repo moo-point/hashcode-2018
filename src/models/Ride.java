@@ -6,7 +6,16 @@ public class Ride {
     public int startEarliest;
     public int finishLatest;
 
-    public Ride(Position start, Position start, int startEarliest, int finishLatest) {
-
+    public int cost() {
+        return Math.abs(start.col - end.col) + Math.abs(start.row - end.row);
     }
+
+    public Ride(Position start, Position end, int startEarliest, int finishLatest) {
+        this.start = start;
+        this.end = end;
+        this.startEarliest = startEarliest;
+        this.finishLatest = finishLatest;
+    }
+
+
 }
