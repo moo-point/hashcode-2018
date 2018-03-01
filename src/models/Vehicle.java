@@ -38,7 +38,6 @@ public class Vehicle {
 
     public void step(int time) {
         if (currentPosition.row == currentRide.end.row && currentPosition.col == currentRide.end.col) {
-            currentRide = null;
             pickNextRide(time);
         }
 
